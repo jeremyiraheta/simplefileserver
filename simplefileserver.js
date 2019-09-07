@@ -1,6 +1,6 @@
 let express = require('express');
 let app = express();
-const folder = '/simpleftp/';
+const folder = '/simpleftp';
 const dm = process.cwd();
 const fs = require('fs');
 var os = require('os');
@@ -27,31 +27,44 @@ Object.keys(ifaces).forEach(function (ifname) {
     ++alias;
   });
 });
-let dir = '';
 
-function getfiles() {
-  fs.readdir(dm + folder, (err, files) => {
-    files.forEach(file => {
-      dir += '<li><a href="/' + file + '">' + file + '</a>';
-      c++;
-    });
-    if (err)
-      console.log(err.message());
-  });
+function getfiles(f = dm + folder) {
+  let dir = '<li><a href="..">..</a></li>';
+  let files = fs.readdirSync(f)
+  let parent = '/';
+  parent = f.substring((dm + folder).length)
+  files.forEach(file => {
+    let s = ""
+    let isdir = fs.lstatSync(f + "/" + file).isDirectory()
+    if (isdir)
+      s = "/"
+    dir += '<li><a href="' + parent + file + s + '">' + ((isdir) ? "+" : "*") + file + '</a></li>'
+  })
+  return dir;
 }
-getfiles();
-app.get("/", function (req, resp) {
-  getfiles();
+let files = function (dir, resp) {
+  let out = getfiles(dir)
   resp.writeHead(200, {
     'Content-Type': 'text/html'
   });
-  resp.end('<html><h1>SimpleFile Server</h1> <br><hr> ' + dir + '</html>');
-  dir = '';
+  resp.end('<html><title>SimpleFile Server</title><h1>SimpleFile Server</h1> <br><hr> ' + out + '</html>');
+}
+
+app.get("/", function (req, resp) {
+  files(dm + folder, resp);
 });
 app.get("/*", function (req, resp) {
-  var file = dm + folder + req.url
-  resp.sendFile(file);
-  console.log('Sending File ' + file);
+  let file = dm + folder + req.url
+  let fls = ""
+  if (fs.lstatSync(file).isDirectory())
+    fls = fs.readdirSync(file)
+  if (fls != "") {
+    files(file, resp)
+    console.log('Opening Directory ' + file);
+  } else {
+    resp.sendFile(file);
+    console.log('Sending File ' + file);
+  }
 });
 var server = app.listen(8081, function () {
   var host = ip;
