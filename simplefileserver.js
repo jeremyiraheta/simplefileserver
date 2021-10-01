@@ -40,7 +40,7 @@ Object.keys(ifaces).forEach(function (ifname) {
 });
 
 function getfiles(f = dm + folder) {
-  let dir = '<div style="display:inline-block;width:15px;height:15px;"></div><a href="..">..</a><br>';
+  let dir = '<div style="display:inline-block;width:15px;height:15px;"></div><a href="../?token=' + gentoken() + '">..</a><br>';
   let files = fs.readdirSync(f)
   let parent = '/';
   if (f.startsWith(dm + folder))
@@ -54,7 +54,7 @@ function getfiles(f = dm + folder) {
       return
     if (isdir)
       s = "/"
-    dir += '<div ' + ((isdir) ? "class=ifolder" : "class=ifile") + '></div><a href="' + parent + file + s + '">' + file + '</a><br>'
+    dir += '<div ' + ((isdir) ? "class=ifolder" : "class=ifile") + '></div><a href="' + encodeURIComponent(file) + s + '?token=' + gentoken() + '">' + file + '</a><br>'
   })
   return dir;
 }
@@ -63,19 +63,15 @@ let files = function (dir, resp, mappingstr = "") {
   let map = getMapping()
   if (map != null && dir == dm + folder) {
     Object.keys(map).forEach(e => { //solo lee mapping del folder raiz
-      out += '<div class=ifolder></div><a href="' + mapping + e + '">' + e + '</a><br>'
+      out += '<div class=ifolder></div><a href="' + mapping + e + "/?token=" + gentoken() + '">' + e + '</a><br>'
     });
-  }
-  if (mappingstr != "") {
-    out = replaceGlobally(out, dir.substring(0, dir.indexOf(mappingstr) + mappingstr.length + 1), path.sep + mapping + mappingstr + path.sep)
-    out = replaceGlobally(out, "//", path.sep)
   }
   resp.writeHead(200, {
     'Content-Type': 'text/html'
   });
   resp.end('<html><head>' + favico +
     '<style>body{background-color=black;font-color:white;} .ifolder { background:url(' + ifolder + '); display:inline-block; width:15px; height:15px;} .ifile { background:url(' + ifile + '); display:inline-block; width:15px; height:15px;}</style></head>' +
-    '<title>SimpleFile Server</title><h1>SimpleFile Server</h1> <br><form method=post action=/upload?token=' + gentoken() + ' enctype="multipart/form-data"><input type=file name=attch /> <input type=submit value="Subir" /></form><hr> ' + out + '</html>');
+    '<title>SimpleFile Server</title><h1>SimpleFile Server</h1> <br><form method=post action=/upload?token=' + gentoken() + '&path=' + encrypt(dir) + ' enctype="multipart/form-data"><input type=file name=attch /> <input type=submit value="Subir" /></form><hr> ' + out + '</html>');
 }
 
 function replaceGlobally(original, searchTxt, replaceTxt) {
@@ -129,22 +125,25 @@ app.get("/", function (req, resp) {
     
 });
 app.get("/*", function (req, resp) {
-  if (req.url == "/" + mapping)
+  if (!validate(req.query.token))
     resp.redirect("/")
-  let file = dm + folder + req.url
+  if(req.params[0] == mapping)
+    resp.redirect("/?token=" + gentoken() );
+  let file = dm + folder + replaceGlobally(req.url.substring(0,req.url.indexOf("?token")),"/",path.sep)
   let mdir
-  if (file.indexOf(mapping) >= 0) {
+  if (req.url.indexOf(mapping) >= 0) {
     var map = getMapping()
-    mdir = file.substring(file.indexOf(mapping) + mapping.length)
-    if (mdir.indexOf(path.sep) > 0)
-      mdir = mdir.substring(0, mdir.indexOf(path.sep))
+    mdir = req.url.substring(req.url.indexOf(mapping) + mapping.length)
+    if(mdir.indexOf("/") > -1)
+      mdir = mdir.substring(0,mdir.indexOf("/"))
+    else
+      mdir = mdir.substring(0, mdir.indexOf("?token"))
     file = req.url.substring(mapping.length + 1).replace(mdir, map[mdir])
+    file = replaceGlobally(file, "/", "\\")
+    file = file.substring(0, file.indexOf("?token"))
   }
   file = decodeURI(file)
-  let fls = ""
-  if (fs.lstatSync(file).isDirectory())
-    fls = fs.readdirSync(file)
-  if (fls != "") {
+  if (fs.lstatSync(file).isDirectory()) {
     files(file, resp, mdir)
     console.log('Opening Directory ' + file);
   } else {
@@ -157,11 +156,12 @@ app.get("/*", function (req, resp) {
 app.post("/upload", async (req, res) => {
   try {
       if(req.files) {
-        let file = req.files.attch;          
-        let dir = './simpleftp/' + file.name;
+        let file = req.files.attch;            
+        let p = decrypt(req.query.path);      
+        let dir = p + file.name;
         file.mv(dir);        
       }
-      res.redirect("/?token=" + req.query.token);
+      res.redirect("../?token=" + req.query.token);
   } catch (err) {
       res.status(500).send(err);
   }
