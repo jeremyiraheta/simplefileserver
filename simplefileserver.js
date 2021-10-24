@@ -158,7 +158,7 @@ app.post("/upload", async (req, res) => {
       if(req.files) {
         let file = req.files.attch;            
         let p = decrypt(req.query.path);      
-        let dir = p + file.name;
+        let dir = p + path.sep + file.name;
         file.mv(dir);        
       }
       res.redirect("../?token=" + req.query.token);
