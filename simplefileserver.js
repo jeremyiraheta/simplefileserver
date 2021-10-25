@@ -71,7 +71,7 @@ let files = function (dir, resp, mappingstr = "") {
   });
   resp.end('<html><head>' + favico +
     '<style>body{background-color=black;font-color:white;} .ifolder { background:url(' + ifolder + '); display:inline-block; width:15px; height:15px;} .ifile { background:url(' + ifile + '); display:inline-block; width:15px; height:15px;}</style></head>' +
-    '<title>SimpleFile Server</title><h1>SimpleFile Server</h1> <br><form method=post action=/upload?token=' + gentoken() + '&path=' + encrypt(dir) + ' enctype="multipart/form-data"><input type=file name=attch /> <input type=submit value="Subir" /></form><hr> ' + out + '</html>');
+    '<title>SimpleFile Server</title><h1>SimpleFile Server</h1> <br><form method=post action=/upload?token=' + gentoken() + '&path=' + encrypt(dir) + ' enctype="multipart/form-data"><input type=file name=attch /> <input type=submit value="Subir" /></form><form method=post action=/createdir?token=' + gentoken() + '&path=' + encrypt(dir) + ' > >> Nueva Carpeta <input type=text name=dir /> <input type=submit value=Crear /></form><hr> ' + out + '</html>');
 }
 
 function replaceGlobally(original, searchTxt, replaceTxt) {
@@ -161,12 +161,34 @@ app.post("/upload", async (req, res) => {
         let dir = p + path.sep + file.name;
         file.mv(dir);        
       }
-      res.redirect("../?token=" + req.query.token);
+      let backURL=req.header('Referer') || '/';      
+      res.redirect(backURL);
   } catch (err) {
       res.status(500).send(err);
   }
 });
-
+app.post("/createdir", function (req, resp) {  
+  if(req.query.token == null)
+  {
+    var options = {
+        root: path.join(__dirname, "forms")
+    }; 
+    resp.sendFile("login.html", options, (err) => {
+        if(err)
+            console.log(err)
+    });
+  }
+  else if(validate(req.query.token))
+  {
+    let dir = decrypt(req.query.path);
+    fs.mkdirSync(dir + path.sep + req.body.dir);  
+    let backURL=req.header('Referer') || '/';      
+    resp.redirect(backURL);
+  }
+  else
+    resp.redirect("/");  
+    
+});
 let encrypt = (text) => {
   
   const cipher = crypto.createCipheriv(algorithm, secretKey, iv);
