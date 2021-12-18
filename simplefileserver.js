@@ -15,12 +15,12 @@ const crypto = require('crypto');
 const algorithm = 'aes-256-ctr';
 const iv = crypto.randomBytes(16);
 let secretKey = crypto.createHash('md5').update("VBORw0KGgoAAAANSUhEUgAAABgAAAAY").digest("hex");
-const fileUpload = require('express-fileupload');
+const busboy = require('connect-busboy');
 var ifaces = os.networkInterfaces();
 app.use(express.json());
 app.use(express.urlencoded());
-app.use(fileUpload({
-  createParentPath: true
+app.use(busboy({
+  highWaterMark: 2 * 1024 * 1024, // Set 2MiB buffer
 }));
 let ip = '';
 Object.keys(ifaces).forEach(function (ifname) {
@@ -78,8 +78,11 @@ let files = function (dir, resp, mappingstr = "") {
     '<div class=container><title>SimpleFile Server</title>'+
     '<h2>SimpleFile Server</h2> <br>' +
     '<form method=post action=/upload?token=' + gentoken() + '&path=' + encrypt(dir) + ' enctype="multipart/form-data">'+
+    '<div class="progress" id="proc" style="display:none">' +
+    '<div class="indeterminate"></div>' +
+    '</div>' +
     '<div class=row><div class="col s12">' +
-    '<input type=file name=attch required /> <input type=submit class="btn-small" value="Subir" />' +
+    '<input type=file name=attch required /> <input type=submit class="btn-small" value="Subir" onclick="document.getElementById(\'proc\').style=\'display:block\'" />' +
     '</div></div>' +
     '</form><div class=row>'+
     '<form method=post action=/createdir?token=' + gentoken() + '&path=' + encrypt(dir) + ' > '+
@@ -175,7 +178,7 @@ app.get("/*", function (req, resp) {
     else
       mdir = mdir.substring(0, mdir.indexOf("?token"))
     file = req.url.substring(mapping.length + 1).replace(mdir, map[mdir])
-    file = replaceGlobally(file, "/", "\\")
+    //file = replaceGlobally(file, "/", "\\")
     file = file.substring(0, file.indexOf("?token"))
   }
   file = decodeURI(file)
@@ -191,14 +194,30 @@ app.get("/*", function (req, resp) {
 
 app.post("/upload", async (req, res) => {
   try {
-      if(req.files) {
+      req.pipe(req.busboy);
+      req.busboy.on('file', (fieldname, file, filename) => {
+        console.log(`Upload of '${filename}' started`);
+
+        let p = decrypt(req.query.path);              
+        // Create a write stream of the new file
+        const fstream = fs.createWriteStream(path.join(p, filename));
+        // Pipe it trough
+        file.pipe(fstream);
+ 
+        // On finish of the upload
+        fstream.on('close', () => {
+            console.log(`Upload of '${filename}' finished`);
+            res.redirect('back');
+        });
+      });
+      /**if(req.files) {
         let file = req.files.attch;            
         let p = decrypt(req.query.path);      
         let dir = p + path.sep + file.name;
         file.mv(dir);        
       }
       let backURL=req.header('Referer') || '/';      
-      res.redirect(backURL);
+      res.redirect(backURL);**/
   } catch (err) {
       res.status(500).send(err);
   }
