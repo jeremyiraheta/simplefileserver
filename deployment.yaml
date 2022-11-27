@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sfs-p
+  namespace: default
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: sfs
+  template:
+    metadata:
+      labels:
+        app: sfs
+    spec:
+      containers:
+      - name: sfs
+        image: sfs
+        imagePullPolicy: Never
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sfs-lb
+  namespace: default
+spec:
+  type: LoadBalancer
+  selector:
+    app: sfs
+  ports:
+  - port: 8081
+    targetPort: 8081
+    nodePort: 30001

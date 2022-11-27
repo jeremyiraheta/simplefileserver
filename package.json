@@ -1,7 +1,7 @@
 {
   "name": "simplefileserver",
   "version": "1.0.0",
-  "description": "",
+  "description": "Simple File Manager via http",
   "main": "simplefileserver.js",
   "dependencies": {
     "connect-busboy": "^0.0.2",
@@ -10,7 +10,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon simplefileserver.js"
   },
   "repository": {
     "type": "git",
