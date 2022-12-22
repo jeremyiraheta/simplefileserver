@@ -12,6 +12,8 @@ const favico = '<link rel="shortcut icon" href="data:image/x-icon;base64,iVBORw0
 const del = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA10lEQVR42mNkwA5sgdgViJWg/HtAvBuID6MrZETjmwFxHVThFiC+DRVXBWIfqMFNQHwKmwFhQOwFxDlA/AWHy3iAeAoQbwPiVcgGgGzOAuJEIP7PgB+A9MwH4mkgl8AMADk3Ao/N2FyyAuQtRqi/rIC4E0nBPGhYPIHyZYC4EYiTkdSUA/ExRmigrATiq0iSIA1zgDgFyoexnyCp0QbicJABS4A4CYh/oTkTZggDFs0gwAZyKVUMoNgLxAZiE9SlGIFIcTSCAMUJCQQoSsowQFFmQgZEZ2cAYORE193otZgAAAAASUVORK5CYII="
 const private = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABmJLR0QA/wD/AP+gvaeTAAABX0lEQVRIie2WT0rDQBSHP110Y4sLoSdxKdS4snTrSQQpiAuhm3qOHsD+ce8N1DM0rSioC+tCEIyLvBA7TiaTyQy46A8egbzfm28mk3kJbGRWGxgA98AH8AzcAqfAbijoCfAOJAXxBByHgH4L4BroADsSh8BYcl9Azxe0Tb7SM4OvL543YM8HeEC+0jJNxXvpA/wgg3UsvJF473yAVzJY08LbEu/KBzh7a736t52nU1M6cA9Y8HfmRedXDdUfA12bycQVILYxVyFbGnCV/ayiNZbLHk9Iu1VTIgJm9edlfmR9Q915Sa0zeCz5BnAFPAKvpC010ywEOOtcQ+X+wS94ZKh3Bmeda6nJvUiuZahfk68G8ilX3SnRqgp4X64jTW6keJxU9Kimkm+Q7vNSYij3AG4M9c7ghPTIFOmipLYWOCE9MhF5AzkqWakW/K9a5iIANLYxdfH7hZoT4Ld3I2v9AOcG3ZYByeaQAAAAAElFTkSuQmCC"
 const public = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAABZUlEQVRIie3UvUocURjG8d8mZkWsAoGFtVDQ0gsQI0lIICiChY3JPVjY2Klo4SUIXoGJEEgI2EtISptcQMCvzkINCsHoWMwZZ12dndnNNEL+cGB4z3ueZ973fPCfh0ANC9jBMc7wE6uo/6v4NI4QZYwTvOtUfAp/g9AW3uApevEKX8LcFWaKir7EJg7DwghLLfJXpJXUWgl3Yd3dFnxFpcW6iri6KJhlkoifYRGDeByM83gtbdVu0OpvTHjRID5SQLCZHly6XflvvE0SPobgYgfiCX2oYhifgt4pBog3NBK3pQwqeI9f4nb5EwyqJRkkPMM27VcwiQPsYyInPg0f5J/3Rvalm7mXE38CYyF4jtGSDW5YazBZxpD4HtzHRBDbw3iBOOILlZhkjc8FqsvlOTbCnyQP3QVmtX4ySqEbc/ghvkSn4XtOesTnM+KF+C67fd9CTr053k7ZUc58onUr71EbBh1xDdOggP14nXHDAAAAAElFTkSuQmCC"
+const home = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAqFJREFUOE91k91LU3EYx7+/tXO26eac20R8aYVmNQnR0ExaM0htXXSRXXdRluRVlK4LKy2QSNHLFAX7AyIJCbe0yBdokmlUllmWNhfSXM3Nl+2czXNi58xh0353D7/n++F5+T4EcY/nQTCq1IGENIBEI35zXvCUF6ZVDyHgt0pIJOAHoQZNXwVBCThJcWgNKeyKBKE14RtUIg9axYFS8ssANwHsGoMk2EZM8IqAEVm95x3d8mNAAd93CqxPFMY/OomDOjsMQ0UAunzWSo4zrSJgWN40+1jRONubKGhotRpZlRYk5+4X4uUvM1iw94P1+4U45+wacqoCd4g52LQNoDloROHNRlBaLaBSikX4VxH67cFk8114pz/9H+B8kQ7Tgy4gIx1tfXYMO1wgBDCXZOLamVOA6ydGay9j98nFnSvgpRex70I17g8O4c2HVDAeiVCAPHUDh41u3Cg/ga893SAbPTsD1MYW6C0WnK7rgJQpgtw1JgACWUcQpsZha6uFu98G/7Q1HiCrm3ua0KrMjgLqOyAN/gvYkI2jv1UErM9bsceyfp2UMe3RNdLn3BOyR76FmlgLEx/1CCxJQEAg03EoynPDWl4mtJBs6IK+gKkiZrZXBLxCSnhFvui4tZcuaekGMjPQ3mfHkGNBaKHsaFZsiI76SyhtnmOlimBazEgCZEjWPW9TVP+aLEZhw21QWh2QtH2NaUWvYagMdBIzcyWii1mOf6nScYR5O9WpzvS81wtGUuceiBrpM1zPbNDnL+FQjc8Jmi0gpfjzD0C0NG3kOAw47QkZ354kILQqrpFS8oJ5DBXrTkhJBTnGzGzafJvp+ecqLWj2Xpgh571TlCySqMkLBaVy/iEI0xDpe+uN7Hw10cEiTJuEZMKOxAs3IX8BMBotIOqiE8oAAAAASUVORK5CYII="
+const back = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAi1JREFUOE9jZMAD2PQcIn5dOrCFgYHhCy5ljLgk2G0CfeQsHObd7slXY2Bg+ECSAey2we4OkUnL/zEx8ezO8BQjyQAOu0An2/CkVapKisK3Hz/7e2Tx1FJmTp6fIBewMjEwsDMzg2nG758vPdqz/giKFzisA22sIxLXqqsoif3+x8Dw+98/hq+//zE8+fKL4c33nwzc7EwM3GxMDNzsjAyvDmyecGFyayHcAE7rIAuLsLj1mmoqEr///Wf4AzLg/3+Gm+++Mbz/+RuumYedEWzIs72bJ5yc0AwxgMs2yMg0OHaztrqqFEzzr3//Gc69/Mzw+/8/hM1sjHD2472bJxzqaoQa4BjkbRORtlReRpr/738GsO03339jePvjF9TJIKcjNIO88mDnxgm72qEGgFzB4xIeZBGWPF9KQpLvw68/DNfefmHgYmNigDkZ4X+IYXe2b5iwuRnJAJAhfK4xkcYh8bM+sPLw/GX8B1bIAw84VFdc27J+wrqGBkQgwhKKgHtUrKRH+FQBMVFe1u8f/rw+tLWXh5vrNysLAwMbCxMYc7AwMHx6/PjsgSVLNmBNiVK+sckqAZGT2P/9YtmdGiBOUkKCuUQ9NDFT3tquc1dBohypBoBcBXaZmptP+a1dW2YwMDB8YmBg+I+E4VkD2QsgNjMDAwMLKNUyMDCwQfkg8X8MDAx/GBgYfjMwMPxiYGD4CxX7DzMAphGkiQMJg/hMUI2g/PADikFskEF/AB2jvxHqYpt7AAAAAElFTkSuQmCC"
 const os = require('os');
 const crypto = require('crypto');
 const algorithm = 'aes-256-ctr';
@@ -59,15 +61,16 @@ function getfiles(f = dm + folder) {
     parent = f
   files.forEach(file => {
     let s = ""
-    let isdir = fs.lstatSync(f + path.sep + file).isDirectory()
+    let filepath = f + path.sep + file
+    let isdir = fs.lstatSync(filepath).isDirectory()
     if (file == virtual)
       return
     if (isdir)
       s = "/"
-    if(public_files.includes(encrypt(f + file)))
-      dir += '<div ' + ((isdir) ? "class=ifolder" : "class=ifile") + '></div><a href="' + encodeURIComponent(file) + s + '?id=' + encrypt(f + file) + '">' + file + '</a>' + deleteButton(file) + visibilityButton(f + file) + '<br>'
+    if(public_files.includes(encrypt(filepath)))
+      dir += '<div ' + ((isdir) ? "class=ifolder" : "class=ifile") + '></div><a title="Public" href="' + encodeURIComponent(file) + s + '?id=' + encrypt(filepath) + '">' + file + '</a>' + deleteButton(file) + visibilityButton(filepath) + '<br>'
     else
-      dir += '<div ' + ((isdir) ? "class=ifolder" : "class=ifile") + '></div><a href="' + encodeURIComponent(file) + s + '?token=' + gentoken() + '">' + file + '</a>' + deleteButton(file) + visibilityButton(f + file) + '<br>'
+      dir += '<div ' + ((isdir) ? "class=ifolder" : "class=ifile") + '></div><a title="Private" href="' + encodeURIComponent(file) + s + '?token=' + gentoken() + '">' + file + '</a>' + deleteButton(file) + visibilityButton(filepath) + '<br>'
   })
   return dir;
 }
@@ -76,7 +79,7 @@ let files = function (dir, resp, mappingstr = "") {
   let map = getMapping()
   if (map != null && dir == dm + folder) {
     Object.keys(map).forEach(e => { //solo lee mapping del folder raiz
-      out += '<div class=ifolder></div><a href="' + mapping + e + "/?token=" + gentoken() + '">' + e + '</a> ' + deleteButton(e) +  '<br>'
+    out += '<div class=ifolder></div><a href="' + mapping + e + "/?token=" + gentoken() + '">' + e + '</a> ' + deleteButton(e) +  '<br>'
     });
   }
   resp.writeHead(200, {
@@ -88,18 +91,18 @@ let files = function (dir, resp, mappingstr = "") {
   favico +
   '<style>body{background-color=black;font-color:white;} .ifolder { background:url(' + ifolder + '); display:inline-block; width:15px; height:15px;} .ifile { background:url(' + ifile + '); display:inline-block; width:15px; height:15px;} .del { background:url(' + del + '); display:inline-block; width:16px; height:16px; position: relative; left: 5px; top: 2px;} .public { background:url(' + public + '); display:inline-block; width:24px; height:28px; position: relative; left: 10px; top: 2px;transform: scale(0.7) translateY(9px);} .private { background:url(' + private + '); display:inline-block; width:32px; height:32px; position: relative; left: 10px; top: 2px; transform: scale(0.6) translateY(12px);}</style></head>' +
   '<div class=container><title>SimpleFile Server</title>'+
-  '<h2>SimpleFile Server</h2> <br>' +
+  '<h2><a href="/">SimpleFile Server</a></h2> <br>' +
   '<form method=post action=/upload?token=' + gentoken() + '&path=' + encrypt(dir) + ' enctype="multipart/form-data">'+
   '<div class="progress" id="proc" style="display:none">' +
   '<div class="indeterminate"></div>' +
   '</div>' +
   '<div class=row><div class="col s12 custom-file">' +
-  '<div class="col s9 file-field input-field"><div class="btn"><span>Seleccionar</span><input type=file name=attch id=files required multiple onchange="document.getElementById(\'count\').value=document.getElementById(\'files\').files.length;"/></div><div class="file-path-wrapper"><input class="file-path validate" type="text" placeholder="Seleccione los archivos a subir"></div></div> <input type=submit class="btn-large" value="Subir" onsubmit="document.getElementById(\'proc\').style=\'display:block\';this.disabled = true;document.getElementById(\'btnCF\').disabled=true;" />' +
+  '<div class="col s9 file-field input-field"><div class="btn"><span>Select</span><input type=file name=attch id=files required multiple onchange="document.getElementById(\'count\').value=document.getElementById(\'files\').files.length;"/></div><div class="file-path-wrapper"><input class="file-path validate" type="text" placeholder="Select files"></div></div> <input type=submit class="btn-large" value="Upload" onsubmit="document.getElementById(\'proc\').style=\'display:block\';this.disabled = true;document.getElementById(\'btnCF\').disabled=true;" />' +
   '<input type=hidden name=count id=count value=0 />' +
   '</div></div>' +
   '</form><div class=row>'+
   '<form method=post action=/createdir?token=' + gentoken() + '&path=' + encrypt(dir) + ' > '+
-  '<div class"input-field col s12"><input type=text name=dir id=dir class="col s3" placeholder="Nueva Carpeta" required /></div> <input type=submit id="btnCF" class="btn-small" value="Crear" /></form></div><hr>' +    
+  '<div class"input-field col s12"><input type=text name=dir id=dir class="col s3" placeholder="New Folder" required /></div> <input type=submit id="btnCF" class="btn-small" value="Create" /></form></div><div style="text-align:end;"><a href="/?token=' + gentoken() + '"><img src="' + home +'" title="Home" /></a><a href="../?token=' + gentoken() + '"><img src="' + back + '" title="Back" /></a></div><hr>' +    
   out + 
   '<hr></div></html>');
 }
@@ -138,6 +141,7 @@ app.post("/", function (req, resp) {
   }  catch(ex){}
 })
 app.get("/delete", function(req, resp){
+  public_files = public_files.filter((itm) => itm !== req.query.id)
   let targ = decrypt(req.query.id);
   let referal =  req.headers.referer;
   let file;
@@ -296,6 +300,30 @@ let decrypt = (hash) => {
     return decrpyted.toString();
 }
 
+let encryptArray = (arr) => {
+  let ret = []
+  arr.forEach(text => {
+    const cipher = crypto.createCipheriv(algorithm, secretKey, iv);
+
+    const encrypted = Buffer.concat([cipher.update(text), cipher.final()]);
+
+    ret.push(encrypted.toString('hex'))
+  });
+  return ret
+}
+
+let decryptArray = (arr) => {
+    let ret = []
+    arr.forEach(hash => {
+        const decipher = crypto.createDecipheriv(algorithm, secretKey, Buffer.from(iv, 'hex'));
+
+        const decrpyted = Buffer.concat([decipher.update(Buffer.from(hash, 'hex')), decipher.final()]);
+
+        ret.push(decrpyted.toString());
+    });
+    return ret
+}
+
 let validate = (key) => {
   return key == encrypt(new Date().toDateString())
 }
@@ -306,24 +334,27 @@ let gentoken = () => {
 
 let deleteButton = (target) =>{
   const id = encrypt(target)  
-  return '<a class=del href=# onclick="if(confirm(\'Seguro que desea eliminar?\'))window.location = \'/delete?id=' + id + '\'"></a>'
+  return '<a class=del title="Delete" href=# onclick="if(confirm(\'Are you sure to delete?\'))window.location = \'/delete?id=' + id + '\'"></a>'
 }
 let visibilityButton = (target) =>{
   const id = encrypt(target) 
   var state = "private"
   if(public_files.includes(id)) 
     state = "public"
-  return '<a class=' + state + ' href=# onclick="window.location = \'/switch?id=' + id + '\'"></a>'
+  return '<a class=' + state + ' title="Visibility" href=# onclick="window.location = \'/switch?id=' + id + '\'"></a>'
 }
 
 let persist = () =>{
-  console.log(JSON.stringify(public_files))
+  fs.writeFile('public.txt',JSON.stringify(decryptArray(public_files)), (err) => {
+    if(err)
+      console.log(err)    
+  })
 }
-if(pass == undefined || user == undefined || port == undefined  || pass == '' || user == '' || port == '')
-{
-  console.log("Falto definir alguna variable de entorno USER = ",user,", PASS = ",pass,", PORT = ", port);
-  process.exit();
-}
+fs.readFile('public.txt',(err,data) =>{
+  if(data)
+    public_files = encryptArray(JSON.parse(data))
+})
+
 var server = app.listen(port, function () {
   var host = ip;
   var iport = server.address().port;
