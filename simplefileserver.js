@@ -14,6 +14,7 @@ const private = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7M
 const public = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAABZUlEQVRIie3UvUocURjG8d8mZkWsAoGFtVDQ0gsQI0lIICiChY3JPVjY2Klo4SUIXoGJEEgI2EtISptcQMCvzkINCsHoWMwZZ12dndnNNEL+cGB4z3ueZ973fPCfh0ANC9jBMc7wE6uo/6v4NI4QZYwTvOtUfAp/g9AW3uApevEKX8LcFWaKir7EJg7DwghLLfJXpJXUWgl3Yd3dFnxFpcW6iri6KJhlkoifYRGDeByM83gtbdVu0OpvTHjRID5SQLCZHly6XflvvE0SPobgYgfiCX2oYhifgt4pBog3NBK3pQwqeI9f4nb5EwyqJRkkPMM27VcwiQPsYyInPg0f5J/3Rvalm7mXE38CYyF4jtGSDW5YazBZxpD4HtzHRBDbw3iBOOILlZhkjc8FqsvlOTbCnyQP3QVmtX4ySqEbc/ghvkSn4XtOesTnM+KF+C67fd9CTr053k7ZUc58onUr71EbBh1xDdOggP14nXHDAAAAAElFTkSuQmCC"
 const home = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAqFJREFUOE91k91LU3EYx7+/tXO26eac20R8aYVmNQnR0ExaM0htXXSRXXdRluRVlK4LKy2QSNHLFAX7AyIJCbe0yBdokmlUllmWNhfSXM3Nl+2czXNi58xh0353D7/n++F5+T4EcY/nQTCq1IGENIBEI35zXvCUF6ZVDyHgt0pIJOAHoQZNXwVBCThJcWgNKeyKBKE14RtUIg9axYFS8ssANwHsGoMk2EZM8IqAEVm95x3d8mNAAd93CqxPFMY/OomDOjsMQ0UAunzWSo4zrSJgWN40+1jRONubKGhotRpZlRYk5+4X4uUvM1iw94P1+4U45+wacqoCd4g52LQNoDloROHNRlBaLaBSikX4VxH67cFk8114pz/9H+B8kQ7Tgy4gIx1tfXYMO1wgBDCXZOLamVOA6ydGay9j98nFnSvgpRex70I17g8O4c2HVDAeiVCAPHUDh41u3Cg/ga893SAbPTsD1MYW6C0WnK7rgJQpgtw1JgACWUcQpsZha6uFu98G/7Q1HiCrm3ua0KrMjgLqOyAN/gvYkI2jv1UErM9bsceyfp2UMe3RNdLn3BOyR76FmlgLEx/1CCxJQEAg03EoynPDWl4mtJBs6IK+gKkiZrZXBLxCSnhFvui4tZcuaekGMjPQ3mfHkGNBaKHsaFZsiI76SyhtnmOlimBazEgCZEjWPW9TVP+aLEZhw21QWh2QtH2NaUWvYagMdBIzcyWii1mOf6nScYR5O9WpzvS81wtGUuceiBrpM1zPbNDnL+FQjc8Jmi0gpfjzD0C0NG3kOAw47QkZ354kILQqrpFS8oJ5DBXrTkhJBTnGzGzafJvp+ecqLWj2Xpgh571TlCySqMkLBaVy/iEI0xDpe+uN7Hw10cEiTJuEZMKOxAs3IX8BMBotIOqiE8oAAAAASUVORK5CYII="
 const back = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAi1JREFUOE9jZMAD2PQcIn5dOrCFgYHhCy5ljLgk2G0CfeQsHObd7slXY2Bg+ECSAey2we4OkUnL/zEx8ezO8BQjyQAOu0An2/CkVapKisK3Hz/7e2Tx1FJmTp6fIBewMjEwsDMzg2nG758vPdqz/giKFzisA22sIxLXqqsoif3+x8Dw+98/hq+//zE8+fKL4c33nwzc7EwM3GxMDNzsjAyvDmyecGFyayHcAE7rIAuLsLj1mmoqEr///Wf4AzLg/3+Gm+++Mbz/+RuumYedEWzIs72bJ5yc0AwxgMs2yMg0OHaztrqqFEzzr3//Gc69/Mzw+/8/hM1sjHD2472bJxzqaoQa4BjkbRORtlReRpr/738GsO03339jePvjF9TJIKcjNIO88mDnxgm72qEGgFzB4xIeZBGWPF9KQpLvw68/DNfefmHgYmNigDkZ4X+IYXe2b5iwuRnJAJAhfK4xkcYh8bM+sPLw/GX8B1bIAw84VFdc27J+wrqGBkQgwhKKgHtUrKRH+FQBMVFe1u8f/rw+tLWXh5vrNysLAwMbCxMYc7AwMHx6/PjsgSVLNmBNiVK+sckqAZGT2P/9YtmdGiBOUkKCuUQ9NDFT3tquc1dBohypBoBcBXaZmptP+a1dW2YwMDB8YmBg+I+E4VkD2QsgNjMDAwMLKNUyMDCwQfkg8X8MDAx/GBgYfjMwMPxiYGD4CxX7DzMAphGkiQMJg/hMUI2g/PADikFskEF/AB2jvxHqYpt7AAAAAElFTkSuQmCC"
+const edit = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAARlJREFUSEvl1btNxEAQgOHvGoAEiYBHTgA5ISKCKoiQqAGJh5CoAYivCBJIaQCJAogQJBSAwIN8p5Wxj/Uejthsrd3/98x4xiMDr9HAfH8pOMMHLtKXbgr2cYOVGZEF5ADj5EzAT+v9SSppCp6x2hO+jEcsJfeOcRn7puCzPpSbuoC+YQt3ieS84kRUcwkCcITdOoIN3OOq4obge5VGkOb8BTt4QqQr9tNVIkjhE1BAN/HarF9fQRs8mPF8mpbSCHLh23joW4M+8Fss9hHkwoP5joX048mpwaQ30tR25fxHH5UIOgtajYu5BbPgEWGRoM9E/weC38Z1TrqCsd7VB3u4xloOqeVMwA8RzdY6TQu53ddyfyzF4sEFX55DRBlfi0NKAAAAAElFTkSuQmCC";
 const os = require('os');
 const crypto = require('crypto');
 const algorithm = 'aes-256-ctr';
@@ -66,11 +67,11 @@ function getfiles(f = dm + folder) {
     if (file == virtual)
       return
     if (isdir)
-      s = "/"
+      s = "/"    
     if(public_files.includes(encrypt(filepath)))
-      dir += '<div ' + ((isdir) ? "class=ifolder" : "class=ifile") + '></div><a title="Public" href="' + encodeURIComponent(file) + s + '?id=' + encrypt(filepath) + '">' + file + '</a>' + deleteButton(file) + visibilityButton(filepath) + '<br>'
+      dir += '<div ' + ((isdir) ? "class=ifolder" : "class=ifile") + '></div><a title="Public" href="' + encodeURIComponent(file) + s + '?id=' + encrypt(filepath) + '">' + file + '</a>' + (file.endsWith(".txt") ? editButton(filepath, file) : "") + deleteButton(file) + visibilityButton(filepath) + '<br>'
     else
-      dir += '<div ' + ((isdir) ? "class=ifolder" : "class=ifile") + '></div><a title="Private" href="' + encodeURIComponent(file) + s + '?token=' + gentoken() + '">' + file + '</a>' + deleteButton(file) + visibilityButton(filepath) + '<br>'
+      dir += '<div ' + ((isdir) ? "class=ifolder" : "class=ifile") + '></div><a title="Private" href="' + encodeURIComponent(file) + s + '?token=' + gentoken() + '">' + file + '</a>' + (file.endsWith(".txt") ? editButton(filepath, file) : "") + deleteButton(file) + visibilityButton(filepath) + '<br>'
   })
   return dir;
 }
@@ -81,15 +82,14 @@ let files = function (dir, resp, mappingstr = "") {
     Object.keys(map).forEach(e => { //solo lee mapping del folder raiz
     out += '<div class=ifolder></div><a href="' + mapping + e + "/?token=" + gentoken() + '">' + e + '</a> ' + deleteButton(e) +  '<br>'
     });
-  }
-  resp.writeHead(200, {
-    'Content-Type': 'text/html'
-  });
-  resp.end('<html><head>' +
+  }  
+  resp.status(200).type('html').send('<html><head>' +
   '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">' +
   '<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>' +
+  '<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>' +
+  '<script src="/forms/editor.js"></script>' +
   favico +
-  '<style>body{background-color=black;font-color:white;} .ifolder { background:url(' + ifolder + '); display:inline-block; width:15px; height:15px;} .ifile { background:url(' + ifile + '); display:inline-block; width:15px; height:15px;} .del { background:url(' + del + '); display:inline-block; width:16px; height:16px; position: relative; left: 5px; top: 2px;} .public { background:url(' + public + '); display:inline-block; width:24px; height:28px; position: relative; left: 10px; top: 2px;transform: scale(0.7) translateY(9px);} .private { background:url(' + private + '); display:inline-block; width:32px; height:32px; position: relative; left: 10px; top: 2px; transform: scale(0.6) translateY(12px);}</style></head>' +
+  '<style>body{background-color=black;font-color:white;} .ifolder { background:url(' + ifolder + '); display:inline-block; width:15px; height:15px;} .ifile { background:url(' + ifile + '); display:inline-block; width:15px; height:15px;} .del { background:url(' + del + '); display:inline-block; width:16px; height:16px; position: relative; left: 5px; top: 2px;} .public { background:url(' + public + '); display:inline-block; width:24px; height:28px; position: relative; left: 10px; top: 2px;transform: scale(0.7) translateY(9px);} .private { background:url(' + private + '); display:inline-block; width:32px; height:32px; position: relative; left: 10px; top: 2px; transform: scale(0.6) translateY(12px);} .edit { background:url(' + edit + '); background-repeat: round; display:inline-block; position: relative; width:32px; height:32px; transform: scale(0.6) translateY(15px);}</style></head>' +
   '<div class=container><title>SimpleFile Server</title>'+
   '<h2><a href="/">SimpleFile Server</a></h2> <br>' +
   '<form method=post action=/upload?token=' + gentoken() + '&path=' + encrypt(dir) + ' enctype="multipart/form-data">'+
@@ -104,7 +104,7 @@ let files = function (dir, resp, mappingstr = "") {
   '<form method=post action=/createdir?token=' + gentoken() + '&path=' + encrypt(dir) + ' > '+
   '<div class"input-field col s12"><input type=text name=dir id=dir class="col s3" placeholder="New Folder" required /></div> <input type=submit id="btnCF" class="btn-small" value="Create" /></form></div><div style="text-align:end;"><a href="/?token=' + gentoken() + '"><img src="' + home +'" title="Home" /></a><a href="../?token=' + gentoken() + '"><img src="' + back + '" title="Back" /></a></div><hr>' +    
   out + 
-  '<hr></div></html>');
+  '<hr></div>' + modalEdit() + '</html>');
 }
 
 function replaceGlobally(original, searchTxt, replaceTxt) {
@@ -193,10 +193,35 @@ app.get("/", function (req, resp) {
     resp.redirect("/");  
     
 });
+app.get("/forms/*", function (req, resp) {
+    var options = {}; 
+    resp.status(200).sendFile(path.join(__dirname, req.path), options, (err) => {
+        if(err)
+            console.log(err)
+    });
+});
+app.get("/open", function (req, resp) {
+  if(req.query.id == null){
+    resp.status(500).end("No defined id");
+    return;
+  }
+  let file = decrypt(req.query.id);  
+  if(!file.endsWith(".txt"))
+  {
+    resp.status(500).end("No valid format");
+    return;
+  }
+  var options = {}; 
+  resp.status(200).sendFile(file, options, (err) => {
+      if(err)
+          console.log(err)
+  });
+  
+});
 app.get("/*", function (req, resp) {
   if (!public_files.includes(req.query.id))
-    if (!validate(req.query.token))
-      resp.redirect("/")
+      if (!validate(req.query.token))
+        resp.redirect("/")   
   if(req.params[0] == mapping)
     resp.redirect("/?token=" + gentoken() );
   let file = dm + folder + replaceGlobally(req.url.substring(0,req.url.indexOf("?token")),"/",path.sep)
@@ -208,25 +233,45 @@ app.get("/*", function (req, resp) {
       mdir = mdir.substring(0,mdir.indexOf("/"))
     else
       mdir = mdir.substring(0, mdir.indexOf("?token"))
-    file = req.url.substring(mapping.length + 1).replace(mdir, map[mdir])
-    //file = replaceGlobally(file, "/", "\\")
+    file = req.url.substring(mapping.length + 1).replace(mdir, map[mdir])    
     file = file.substring(0, file.indexOf("?token"))
   }
   file = decodeURI(file)
   if(public_files.includes(req.query.id))
     file = decrypt(req.query.id)
   if(file != undefined){
-    if (fs.lstatSync(file).isDirectory()) {
-      files(file, resp, mdir)
-      console.log('Opening Directory ' + file);
-    } else {
-      resp.sendFile(file);
-      if (file.toLowerCase() != virtual)
-        console.log('Sending File ' + file);
+    if(fs.existsSync(file))
+    {
+      if (fs.lstatSync(file).isDirectory()) {
+        files(file, resp, mdir)
+        console.log('Opening Directory ' + file);
+      } else {
+        resp.sendFile(file);
+        if (file.toLowerCase() != virtual)
+          console.log('Sending File ' + file);
+      }
+    }else{
+      var options = {
+        root: path.join(__dirname, "forms")
+      }; 
+      resp.status(404).sendFile("notfound.jpg", options, (err) => {
+          if(err)
+              console.log(err)
+      });
     }
   }  
 });
-
+app.put("/edit", async (req, res) => {  
+  if(req.query.id == null) return;    
+  let file = decrypt(req.query.id);    
+  if(fs.existsSync(file)){    
+    fs.writeFile(file, req.body.content, (err) => {
+      if(err)
+        console.log(err)    
+    })
+    res.status(200).end("Saved...");
+  }
+});
 app.post("/upload", async (req, res) => {
   try {
       req.pipe(req.busboy);        
@@ -343,12 +388,29 @@ let visibilityButton = (target) =>{
     state = "public"
   return '<a class=' + state + ' title="Visibility" href=# onclick="window.location = \'/switch?id=' + id + '\'"></a>'
 }
+let editButton = (target, name) => {
+  const id = encrypt(target)
+  return '<a class=edit title="Edit" href=# id="' + id + '"  name="' + name + '"></a>'
+}
 
 let persist = () =>{
   fs.writeFile('public.txt',JSON.stringify(decryptArray(public_files)), (err) => {
     if(err)
       console.log(err)    
   })
+}
+let modalEdit = () => 
+{
+  return "<div id=\"modale\" class=\"modal modal-fixed-footer\">"
+    + "<div class=\"modal-content\">"
+    + "<h4 id=modal_title></h4>"
+    + "<textarea id=modal_content style=\"height:500px;width:1000px\"></textarea>"
+    + "</div>"
+    + "<div class=\"modal-footer\">"
+    + "<a href=\"#!\" class=\"modal-close waves-effect waves-green btn-flat\">Cancel</a>"
+    + "<a href=\"#!\" id=save class=\"modal-close waves-effect waves-green btn-flat\">Save</a>"
+    + "</div>"
+    + "</div>";
 }
 fs.readFile('public.txt',(err,data) =>{
   if(data)
