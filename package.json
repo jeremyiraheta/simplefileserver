@@ -8,9 +8,12 @@
     "express": "^4.17.1",
     "express-fileupload": "^1.2.1"
   },
-  "devDependencies": {},
-  "scripts": {
-    "start": "nodemon simplefileserver.js"
+  "devDependencies": {
+    "jest": "^30.2.0"
+  },
+"scripts": {
+    "start": "nodemon simplefileserver.js",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
