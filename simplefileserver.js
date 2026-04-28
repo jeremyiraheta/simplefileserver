@@ -6,18 +6,6 @@ const dm = process.cwd();
 const fs = require('fs');
 const virtual = 'virtual.map'
 const mapping = 'mapping/'
-
-const ifolder = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#FFC107" width="20" height="20"><path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/></svg>';
-const ifile = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#90CAF9" width="20" height="20"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>';
-const favico = '<link rel="shortcut icon" href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAF5ElEQVR42p1Va2wUVRT+zrx2t9vSB7S0pUCLYqFFno2CKcVSUSQ8oiHaqGliEBU0iMpD5QcxvhLUxB8QIaAxIAEjmKgYEcQQnlGLQNACQksLKbT0QVu63Z3Zx/Wb2SXCXya5uTN37j3fOd/5zrmCu3gOZuKhySbetgShBNDemUCvqZARVRihA3oMOP5GCB/vdpCQuwHYn4GjUWAaDQqNKc4I891RyfdyE/JvApUvhXD0DoBaE/43/VijCRI36VmfQlcfcKNfoZejjyMyXsdYH/AjDWkxGnN4zjXq3DZyGcZNwYwlIRy6A+CzNDx/j4YvdK5qgBj0zn3nfnefordCThS9h2ucs3BWrlE3GoJ578N1RqAwem0YF+8A2JiGdRawIrUoiofJMeix+AX8hHQQIEh0A/8DRFNgNt9d4DGk6EAMWRts9Hq2NvgxY6iGCQHBwpDC9DSumq7LKolkJzwDyGcoXfzXyFAyJbk2wD08g37uiXBO5/oDFhLfRuH72kFMlmmYVyj43g2N/yROu1SEa0BoTyFF1xAtGUGRH2qvneSMKpIiHWoQP/I0yPEoVCvBq3yILwh5PkKeBd4ZAbw/kdaYROkiBVP4K0Ae2+ME42GDhoYaUORfqDulc2+YHttxUhZL8n6V/4oJfoKJmEmAJwZSALXAK2OA9UVIemXQ3QAHOYef84QAcImHskl6H8PrpoeXEyYOp5WgzGlDRaLPU1ED14NM4EnyVmMhvjsG65so62AB8GQJsKtS95QhJwMF6mygALND52QsGR6kuTxBCOom0NP90tz5yJ7zNOoP7pF1jbvUcOrqnyjEtKDq3QgIdCCB9K8cDEgNMLUCOJbvqsLwy4bKlWpc+b34a/dm2dl7RA01k8CGeJKVEGmblTMHgeJytLeclpVth1QVIjhHAN2EOkaAKgtyRqFgvYM2eZCyrdPR4ienTWZQPi2ep4LBIPqb/5A9kTOqiADMg1gpAFeWH0RzsEUbjJJol2ySblXMPfv6IUKAAwSYRpl2Cso/stEg5Tz/KHNWItAzSMcmK5erFhbEOrHMsuFSNMjwis0FcunyctEcTdYCpQ1GhfNulXHhBypsCuegjupVNg56dfA60MbFvBx6OJCSZp4ByaIE05IAhITyU1nOuAoVrpkPu4LE5A4T7Xqr6lyxGE3nL4jDKHcQaBwlW2bhmUUR7LgFcGqSgQmDfRYyHq5BevEo+CwTRsyBFYvCtCzo95Whv3IObuYVIxJLFqEFavTIz/B1tKJl5RLQOWwhwChanevH6vlhrPMAlpPCYl0emfXr7xIprVCeAVKqs1mY5MbURAxNKav9iqTnZavQh2sQWFiLrnffEmdKlUqMLMWV5XVefraRuiBV93IAn1eHsfQWwM7xhUVPTau/KN37f1IDF84if9JEsTpaldnZjuzK6dL/3holMUecjutKrl5GL7MiuiH29sPq5s4v0bd9I9PNgCiWbhbdYh/2zbXxmAewCthcneZ7Ia+hB02PT4Kv8ZyX0CC16R9dBm3qTOil9zMUymUghIRtI5aRidDkath/HoW2dhHGSBR7yVEz7Z1m0msttNQ5KPYAlrCSZ2lYGl/9iQypmqlix/bDKBwp0dIpSl1uhH7kFzEaTihfzBZferrq0dgLwmHozQ1idrer3rjX6KSZNaJRFHtjkNkGEvUKWR7Aq+zUo4AXXe7M8grlKyiC0dkm6Y2nlC8aQQ7ZUMlez7zQCM8kuNBDKrJZ4S3knd1Y2gjQwX/fEWAS16+xc3sArwHbKMPnFrHxX2KC212FaEndkyUMIzPs9aAB6gYoNJKt+m/buyq9ln1Nec0S+Tw3moNbe7bGMcwDqOMlw562rox10MtE8bpERJJ9x0p1U1KgXAO..."/>';
-const del = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#f44336" width="20" height="20"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1-1H5v2h14V4z"/></svg>';
-const private = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#FF9800" width="20" height="20"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V4c0-1.68 1.35-3.05 3.05-3.05 1.7 0 3.05 1.37 3.05 3.05v4z"/></svg>';
-const public = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#4CAF50" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41 1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>';
-const home = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#fff" width="24" height="24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>';
-const back = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#fff" width="24" height="24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>';
-const edit = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#2196F3" width="20" height="20"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>';
-const iview = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#E91E63" width="20" height="20"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>';
-const ivideo = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#9C27B0" width="20" height="20"><path d="M8 5v14l11-7z"/></svg>';
 const os = require('os');
 const crypto = require('crypto');
 const algorithm = 'aes-256-ctr';
@@ -30,8 +18,6 @@ var user = process.env.USER_SFS || "admin";
 var pass = process.env.PASS_SFS || "admin";
 var port = process.env.PORT_SFS || 8080;
 var public_files = []
-var count = 0
-var counti = 0
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(busboy({
@@ -98,7 +84,7 @@ let files = function (dir, resp, mappingstr = "", isPublicFolder = false) {
   let folderName = dir.split(path.sep).pop() || 'SimpleFile Server';
   if (map != null && dir == dm + folder) {
     Object.keys(map).forEach(e => { //solo lee mapping del folder raiz
-    out += '<div class=ifolder></div><a href="' + mapping + e + "/?token=" + gentoken() + '">' + e + '</a> ' + deleteButton(e) +  '<br>'
+    out += '<div class=file-item><span class="folder-icon" style="display:inline-block; width:24px; height:24px; margin-right: 12px;"></span><a href="' + mapping + e + "/?token=" + gentoken() + '">' + e + '</a></div>'
     });
   }  
   let headerContent;
@@ -144,7 +130,6 @@ let files = function (dir, resp, mappingstr = "", isPublicFolder = false) {
   '<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>' +
   '<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>' +
   '<script src="/forms/editor.js"></script>' +
-  favico +
   '<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">' +
   '<style>' +
   'body {' +
@@ -728,7 +713,7 @@ let isImage = (filename) => {
   return imageExtensions.includes(ext);
 }
 let isVideo = (filename) => {
-  const videoExtensions = ['.mp4', '.webm', '.ogg', '.avi', '.mkv', '.mov', '.wmv', '.flv', '.swf'];
+  const videoExtensions = ['.mp4', '.webm', '.ogg', '.mkv', '.mov', '.wmv', '.flv', '.swf'];
   const ext = filename.toLowerCase().substring(filename.lastIndexOf('.'));
   return videoExtensions.includes(ext);
 }
@@ -754,23 +739,17 @@ let modalEdit = () =>
   </div>
   <div id="imageModal" class="modal" style="background: rgba(26, 26, 46, 0.95); border-radius: 16px;">
     <div class="modal-content" style="text-align: center; padding: 20px; background: transparent;">
-      <h4 id="imageModalTitle" style="color: #00d9ff; margin-bottom: 20px;"></h4>
+      <h4 id="imageModalTitle" style="color: #00d9ff; margin-bottom: 20px;"></h4><a href="#!" class="modal-close waves-effect waves-green btn-flat" style="position: absolute;top:0;right:0;text-box-trim: trim-both;background: rgba(255,255,255,0.1); color: #fff; padding: 8px 24px; border-radius: 8px;">X</a>
       <img id="imagePreview" style="max-width: 100%; max-height: 70vh; border-radius: 8px; box-shadow: 0 8px 32px rgba(0,0,0,0.5);" />
-    </div>
-    <div class="modal-footer" style="background: #16213e; padding: 16px 24px;">
-      <a href="#!" class="modal-close waves-effect waves-green btn-flat" style="background: rgba(255,255,255,0.1); color: #fff; padding: 8px 24px; border-radius: 8px;">Close</a>
-    </div>
+    </div>    
   </div>
   <div id="videoModal" class="modal modal-fixed-footer" style="background: rgba(26, 26, 46, 0.95); border-radius: 16px;">
     <div class="modal-content" style="text-align: center; padding: 20px; max-height: 90vh; background: transparent;">
-      <h4 id="videoModalTitle" style="color: #00d9ff; margin-bottom: 20px;"></h4>
+      <h4 id="videoModalTitle" style="color: #00d9ff; margin-bottom: 20px;"></h4><a href="#!" class="modal-close waves-effect waves-green btn-flat" style="position: absolute;top:0;right:0;text-box-trim: trim-both;background: rgba(255,255,255,0.1); color: #fff; padding: 8px 24px; border-radius: 8px;">X</a>
       <video id="videoPlayer" controls style="max-width: 100%; max-height: 70vh; border-radius: 8px; box-shadow: 0 8px 32px rgba(0,0,0,0.5);">
         Your browser does not support the video tag.
       </video>
-    </div>
-    <div class="modal-footer" style="background: #16213e; padding: 16px 24px;">
-      <a href="#!" class="modal-close waves-effect waves-green btn-flat" style="background: rgba(255,255,255,0.1); color: #fff; padding: 8px 24px; border-radius: 8px;">Close</a>
-    </div>
+    </div>    
   </div>`;
 }
 fs.readFile('public.txt',(err,data) =>{
